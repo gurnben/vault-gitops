@@ -3,7 +3,7 @@ kind: Application
 metadata:
   annotations:
   name: vault
-  namespace: argocd
+  namespace: openshift-gitops
 spec:
   ignoreDifferences:
   - group: admissionregistration.k8s.io
@@ -16,7 +16,7 @@ spec:
   project: default
   source:
     path: vault
-    repoURL: https://github.com/songleo/vault-gitops.git
+    repoURL: https://github.com/gurnben/vault-gitops.git
     targetRevision: main
   syncPolicy:
     automated:
@@ -24,3 +24,9 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+  ignoreDifferences:
+  - group: admissionregistration.k8s.io
+    kind: MutatingWebhookConfiguration
+    name: vault-agent-injector-cfg
+    jsonPointers:
+      - /webhooks/0/clientConfig/caBundle         

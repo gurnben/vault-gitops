@@ -8,7 +8,7 @@ metadata:
     app.kubernetes.io/instance: vault
     app.kubernetes.io/managed-by: Helm
 spec:
-  host: chart-example.local
+  host: vault.apps.aap-aas-hubs-rbvk4.az.red-chesterfield.com
   to:
     kind: Service
     name: vault
